@@ -30,5 +30,6 @@ public class MainController {
 	public String Contact() {
 		return"generalPage/contact";
 	}
+	//test
 	
 }
