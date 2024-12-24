@@ -30,6 +30,10 @@ public class MainController {
 	public String Contact() {
 		return"generalPage/contact";
 	}
+	@GetMapping("/lab")
+	public String lab() {
+		return"generalPage/lab";
+	}
 	//test
 	
 }
