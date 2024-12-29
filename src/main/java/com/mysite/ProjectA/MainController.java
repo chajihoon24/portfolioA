@@ -34,6 +34,10 @@ public class MainController {
 	public String lab() {
 		return"generalPage/lab";
 	}
+	@GetMapping("/jsWork")
+	public String jsWork() {
+		return "generalPage/jsWork";
+	}
 	//test
 	
 	
