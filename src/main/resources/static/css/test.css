@@ -22,6 +22,9 @@
     width: 1000px;
     position: relative;
 }
+#op2 {
+    position: relative;
+}
 
 #create_obj {
     width: 300px;
@@ -52,9 +55,10 @@
     transform: translateY(-100px);
 
 }
-.body{
+
+/*.body{
     position: relative;
-}
+}*/
 .npc:hover{
     transition: 0.35s;
     border: 1px solid white;
