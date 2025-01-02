@@ -35,6 +35,15 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.0'
+    
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'  // SLF4J API
+    implementation 'ch.qos.logback:logback-classic:1.4.0'  // Logback 구현체
+    implementation 'ch.qos.logback:logback-core:1.4.0'  // Logback 코어
 }
 
 tasks.named('test') {
