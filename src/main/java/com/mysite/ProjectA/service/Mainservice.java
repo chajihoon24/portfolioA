@@ -43,15 +43,17 @@ public class Mainservice {
     	
     	
     	LocalDateTime currentDateTime1 = LocalDateTime.now();
-    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-    	System.out.println(currentDateTime1.format(formatter));
     	
     	
     	LocalDateTime currentDateTime2 = LocalDateTime.now();
     	DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("HH");
         int hour = Integer.parseInt(currentDateTime2.format(formatter1)) - 2;
-        if(hour<02) {
-        	hour=0;       	
+        if(hour<=0){
+        	hour=20;
+        	currentDateTime1=currentDateTime1.minusDays(1);
+    	}else if(hour<02) {
+        	hour=23;
+        	currentDateTime1=currentDateTime1.minusDays(1);
         }else if(hour<05) {
         	hour=2;
         }else if(hour<=8) {
@@ -66,7 +68,10 @@ public class Mainservice {
         	hour=17;
         }else if(hour<=23) {
         	hour=20;
+        	
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        System.out.println(currentDateTime1.format(formatter));
         
         List<CustomData> weatherList = new ArrayList<>();
         int time=3;
