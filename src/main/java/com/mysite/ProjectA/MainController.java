@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.ProjectA.DTO.CustomData;
 import com.mysite.ProjectA.service.Mainservice;
+import com.mysite.ProjectA.test.JsonDTO;
+import com.mysite.ProjectA.test.TestService;
+
+import groovyjarjarantlr4.v4.codegen.model.TestSetInline;
 
 @Controller
 public class MainController {
 	
 	@Autowired
 	Mainservice mainservice;
+	@Autowired
+	TestService testService;
 	
 	@GetMapping("/")
 	public String root() {
@@ -41,6 +47,8 @@ public class MainController {
 	public String Contact() {
 		return"generalPage/contact";
 	}
+	
+	//========================================================================
 	@GetMapping("/lab")
 	public String lab() {
 		return"generalPage/lab";
@@ -55,6 +63,17 @@ public class MainController {
 		model.addAttribute("weatherData", weatherDataList);
 		
 		return"generalPage/weather";
+	}
+	@GetMapping("/lab/jsonPractice")
+	public String jsonPractice() {
+		return "generalPage/jsonPractice";
+	}
+	
+	@GetMapping("/test")
+	public String test(Model model) {
+		JsonDTO data =testService.jsonService();
+		model.addAttribute("data",data);
+		return "generalPage/test";
 	}
 	//test
 }

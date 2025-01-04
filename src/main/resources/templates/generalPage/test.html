@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ <head>
+  <meta charset = "utf-8">
+	<!--폰트-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+	<!--테일윈드-->
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" th:href="@{/css/test.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+  <title>test</title>
+ </head>
+ <body>
+	<div th:text="'name :' + ${data.name}"></div>
+	<div>age : <span th:text="${data.age}"></span></div>	
+	
+	
+ </body>
+</html>
