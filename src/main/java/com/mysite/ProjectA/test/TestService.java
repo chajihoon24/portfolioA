@@ -14,64 +14,40 @@ import com.mysite.ProjectA.DTO.UserDTO;
 
 @Service
 public class TestService {
-	
-	public JsonDTO jsonService() {
-		
-		String jsonData ="""
-				{
-					"name" : "jihoon",
-					"age" : 12
-				}
-				
-				""";
-		JsonDTO data = new JsonDTO();
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		try {
-			data = objectMapper.readValue(jsonData, JsonDTO.class);
-			System.out.println("name :" + data.getName());
-			System.out.println("age :" + data.getAge());
-		}catch(Exception e) {
-			System.out.println("error :"+ e);
-		}
-		
-		return data;		
-	}
-	
-	
+
+
 	public List<FinalDTO> jsonService2() {
-	String apiUrl = "https://jsonplaceholder.typicode.com/users";
-	List<UserDTO> userList =  new ArrayList<>();
-	FinalDTO finalDTO = new FinalDTO();
-	List<FinalDTO> newUserList = new ArrayList<>();
-	
-	try {
-		URL url = new URL(apiUrl);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
-		connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-		int responseCode = connection.getResponseCode();
-		if(responseCode == 200) {
-			InputStream data = connection.getInputStream();
-			ObjectMapper objectMapper = new ObjectMapper();
-			userList =objectMapper.readValue(data,objectMapper.getTypeFactory().constructCollectionType(List.class, UserDTO.class));
-		}else {
-			System.out.println("error :" + connection.getResponseMessage() );
+		String apiUrl = "https://jsonplaceholder.typicode.com/users";
+		List<UserDTO> userList = new ArrayList<>();
+		FinalDTO finalDTO = new FinalDTO();
+		List<FinalDTO> newUserList = new ArrayList<>();
+
+		try {
+			URL url = new URL(apiUrl);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setRequestMethod("GET");
+			connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+			int responseCode = connection.getResponseCode();
+			if (responseCode == 200) {
+				InputStream data = connection.getInputStream();
+				ObjectMapper objectMapper = new ObjectMapper();
+				userList = objectMapper.readValue(data,
+						objectMapper.getTypeFactory().constructCollectionType(List.class, UserDTO.class));
+			} else {
+				System.out.println("error :" + connection.getResponseMessage());
+			}
+		} catch (Exception e) {
+			System.out.println("error :" + e.getMessage());
+
 		}
-	}catch(Exception e){
-		System.out.println("error :"+ e.getMessage());
-		
-	}
-	for(UserDTO data : userList) {
-		finalDTO.setName(data.getName());
-		finalDTO.setUsername(data.getUsername());
-		finalDTO.setEmail(data.getEmail());
-		
-		newUserList.add(finalDTO);
-	}
-	return newUserList;
-	
-	
-	
+		for (UserDTO data : userList) {
+			finalDTO.setName(data.getName());
+			finalDTO.setUsername(data.getUsername());
+			finalDTO.setEmail(data.getEmail());
+
+			newUserList.add(finalDTO);
+		}
+		return newUserList;
+
 	}
 }

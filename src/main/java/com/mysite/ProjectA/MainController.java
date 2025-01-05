@@ -16,65 +16,71 @@ import com.mysite.ProjectA.test.TestService;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	Mainservice mainservice;
 	@Autowired
 	TestService testService;
-	
+
 	@GetMapping("/")
 	public String root() {
-		return"generalPage/main";
-	}
-	@GetMapping("/main")
-	public String Home(){		
 		return "generalPage/main";
 	}
+
+	@GetMapping("/main")
+	public String Home() {
+		return "generalPage/main";
+	}
+
 	@GetMapping("/introduce")
 	public String Introduce() {
 		return "generalPage/introduce";
 	}
+
 	@GetMapping("/portfolio")
 	public String Portfolio() {
-		return"generalPage/portfolio";
+		return "generalPage/portfolio";
 	}
+
 	@GetMapping("/about")
 	public String About() {
-		return"generalPage/about";
+		return "generalPage/about";
 	}
+
 	@GetMapping("/contact")
 	public String Contact() {
-		return"generalPage/contact";
+		return "generalPage/contact";
 	}
-	
-	//========================================================================
+
+	// ========================================================================
 	@GetMapping("/lab")
 	public String lab() {
-		return"generalPage/lab";
+		return "generalPage/lab";
 	}
+
 	@GetMapping("lab/jsWork")
 	public String jsWork() {
 		return "generalPage/jsWork";
 	}
+
 	@GetMapping("/lab/weather")
 	public String weather(@RequestParam("city") String city, Model model) {
-		List<CustomData> weatherDataList=mainservice.WeatherService(city);
+		List<CustomData> weatherDataList = mainservice.WeatherService(city);
 		model.addAttribute("weatherData", weatherDataList);
-		
-		return"generalPage/weather";
+
+		return "generalPage/weather";
 	}
+
 	@GetMapping("/lab/jsonPractice")
 	public String jsonPractice() {
 		return "generalPage/jsonPractice";
 	}
-	
+
 	@GetMapping("/lab/test")
 	public String test(Model model) {
-		JsonDTO data =testService.jsonService();
 		List<FinalDTO> data2 = testService.jsonService2();
-		model.addAttribute("data",data);
-		model.addAttribute("data2",data2);
+		model.addAttribute("data2", data2);
 		return "generalPage/test";
 	}
-	//test
+	// test
 }
