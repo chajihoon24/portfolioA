@@ -9,5 +9,6 @@ public class FinalDTO {
 	private String name;
 	private String username;
 	private String email;
+	private String message;
 
 }
