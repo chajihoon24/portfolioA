@@ -1,23 +1,50 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
- <head>
-  <meta charset = "utf-8">
-	<!--폰트-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-	<!--테일윈드-->
-	<script src="https://cdn.tailwindcss.com"></script>
-	<link rel="stylesheet" th:href="@{/css/test.css}" type="text/css">
-	<link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
-	<link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-  <title>test</title>
- </head>
- <body>
-	<div th:text="'name :' + ${data.name}"></div>
-	<div>age : <span th:text="${data.age}"></span></div>	
+<html 
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout}">
 	
 	
- </body>
+	<div layout:fragment="content">
+	<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6">
+		<div>실험실입니다.</div>
+		<div>여러가지를 실험하는 곳입니다.</div>
+		<hr class="mb-6" style="width:100%;">
+		</div>
+		
+		<div class="flex flex-row max-w-screen-3xl px-10 md:flex-row mx-auto">
+			<div th:replace="fragments/aside::aside"></div>
+			<div class="border text-gray-800 py-6 ml-10 pl-4 flex-1 p-2 mb-3" >contents
+					<div class="text-2xl p-2 mb-1 font-bold">Json 연습</div>
+					<hr class="mb-6" style="width:100%;">
+					
+					<div class="font-bold text-xl" >JSON->객체 연습</div>
+ 			<ul class="flex w-full flex-wrap" >
+				<li th:each=" data : ${data2}">
+					<div class="border-2 flex flex-col m-1 p-1">
+						<div class="font-bold" th:utext="'name&nbsp;:&nbsp;' + ${data.name}"></div>
+						<div th:utext="'username&nbsp;:&nbsp;' + ${data.username}"></div>
+						<div th:utext="'email&nbsp;:&nbsp;' + ${data.email}"></div>
+					</div>
+				</li>
+			</ul>
+			
+<div class="font-bold text-xl mt-3">학습 목표</div>
+		<div>직렬화, 역직렬화, restController를 이해하고 익힙니다. </div>
+		<div class="font-bold text-xl mt-3">구현 내용</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;">json 가져와 객체로 만듭니다.(역직렬화)</li>
+				<li style="list-style-type: disc;">만들어진 객체로 데이터를 가공하고 화면에 나타냅니다.</li>
+				<li style="list-style-type: disc;">restcontroller를 통해 가공된 데이터를 제공하는 api를 만듭니다.</li>
+			</ul>
+			
+					
+					
+					
+		</div>
+		</div>
+		</div>
+		
+					
 </html>
+
+

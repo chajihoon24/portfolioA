@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.ProjectA.DTO.CustomData;
+import com.mysite.ProjectA.DTO.FinalDTO;
 import com.mysite.ProjectA.service.Mainservice;
 import com.mysite.ProjectA.test.JsonDTO;
 import com.mysite.ProjectA.test.TestService;
-
-import groovyjarjarantlr4.v4.codegen.model.TestSetInline;
 
 @Controller
 public class MainController {
@@ -69,10 +68,12 @@ public class MainController {
 		return "generalPage/jsonPractice";
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/lab/test")
 	public String test(Model model) {
 		JsonDTO data =testService.jsonService();
+		List<FinalDTO> data2 = testService.jsonService2();
 		model.addAttribute("data",data);
+		model.addAttribute("data2",data2);
 		return "generalPage/test";
 	}
 	//test
