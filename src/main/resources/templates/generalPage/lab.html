@@ -1,26 +1,46 @@
 <!doctype html>
-<html 
+<html
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout}">
-	
-	<div layout:fragment="content">
-		<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6">
-			<div>실험실입니다.</div>
-			<div>여러가지를 실험하는 곳입니다.</div>
-		<hr class="mb-6" style="width:100%;">
-		</div>
-		<div class="flex flex-row max-w-screen-3xl px-10 md:flex-row mx-auto">
-							<div th:replace="fragments/aside::aside"></div>
-							<div class="border text-gray-800 py-6 ml-10 pl-4 flex-1 p-2" >contents
+	layout:decorate="~{layout}"
+>
 
-								<div class="text-2xl p-2 mb-1 font-bold"><span class="text-yellow-500 text-2xl">카카오맵</span> API 가져오기</div>
-								<hr class="py-1">
-								
-								<div id="map" style="width:50%;height:400px;"></div>
-								<a class="text-sm text-blue-300 underline" href="https://apis.map.kakao.com/web/guide/">공식문서링크</a>
-								<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e59e535c0b160dfa98ee590d622b461c"></script>
-								<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=gwuyj0t8pb"></script>
-								<script th:inline="javascript">
+<div layout:fragment="content">
+	<div
+		class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6"
+	>
+		<div>실험실입니다.</div>
+		<div>여러가지를 실험하는 곳입니다.</div>
+		<hr
+			class="mb-6"
+			style="width: 100%;"
+		>
+	</div>
+	<div class="flex flex-row max-w-screen-3xl px-10 md:flex-row mx-auto">
+		<div th:replace="fragments/aside::aside"></div>
+		<div class="border text-gray-800 py-6 ml-10 pl-4 flex-1 p-2">
+			contents
+
+			<div class="text-2xl p-2 mb-1 font-bold">
+				<span class="text-yellow-500 text-2xl">카카오맵</span> API 가져오기
+			</div>
+			<hr class="py-1">
+
+			<div
+				id="map"
+				style="width: 50%; height: 400px;"
+			></div>
+			<a
+				class="text-sm text-blue-300 underline"
+				href="https://apis.map.kakao.com/web/guide/"
+			>공식문서링크</a>
+			<script
+				src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e59e535c0b160dfa98ee590d622b461c"
+			></script>
+			<script
+				type="text/javascript"
+				src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=gwuyj0t8pb"
+			></script>
+			<script th:inline="javascript">
 									/*<![CDATA[*/
 								  document.addEventListener('DOMContentLoaded', function () {
 									
@@ -55,24 +75,32 @@
 								  /*]]>*/
 								  
 								</script>
-								<div class="text-xl font-bold mt-3">학습 목표</div>
-								<div>API를 직접 호출하여 사용함으로써 API의 개념과 작동 과정을 이해한다.</div>
-								<div class="text-xl font-bold mt-3">구현 내용</div>
-								<ul class="pl-2">
-									<li style="list-style-type: disc;">api문서를 참고해 카카오맵 정상 호출</li>
-									<li style="list-style-type: disc;">제공하는 메서드를 활용해 커스텀이미지로 마커 생성, 사이즈바 추가</li>
-								</ul>
-								<div class="text-xl font-bold mt-3">오류 회고</div>
-								<ul class="pl-2">
-									<li style="list-style-type: disc;"><span class="text-red-800 font-bold">오류:</span>카카오맵 어플리케이션 등록시 127.0.0.1과 localhost은 다르게 인식된다.</li>
-								<ul>
-									
-									
-								<!--네이버지도-->
-								<div class="text-2xl p-2 mb-1 font-bold mt-5"><span class="text-green-500 text-2xl">네이버맵</span> API 가져오기</div>
-								<hr class="py-1">
-								<div id="navermap" style="width:50%;height:400px;"></div>
-								<script>
+			<div class="text-xl font-bold mt-3">학습 목표</div>
+			<div>API를 직접 호출하여 사용함으로써 API의 개념과 작동 과정을 이해한다.</div>
+			<div class="text-xl font-bold mt-3">구현 내용</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;">api문서를 참고해 카카오맵 정상 호출</li>
+				<li style="list-style-type: disc;">제공하는 메서드를 활용해 커스텀이미지로 마커 생성,
+					사이즈바 추가</li>
+			</ul>
+			<div class="text-xl font-bold mt-3">오류 회고</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;"><span
+					class="text-red-800 font-bold"
+				>오류:</span>카카오맵 어플리케이션 등록시 127.0.0.1과 localhost은 다르게 인식된다.</li>
+				<ul>
+
+
+					<!--네이버지도-->
+					<div class="text-2xl p-2 mb-1 font-bold mt-5">
+						<span class="text-green-500 text-2xl">네이버맵</span> API 가져오기
+					</div>
+					<hr class="py-1">
+					<div
+						id="navermap"
+						style="width: 50%; height: 400px;"
+					></div>
+					<script>
 								var mapOptions = {
 								    center: new naver.maps.LatLng(37.251687, 127.357549),
 								    zoom: 17
@@ -85,13 +113,15 @@
 								    map: map
 								});
 								</script>
-								<a class="text-sm text-blue-300 underline" href="https://navermaps.github.io/maps.js.ncp/docs/">공식문서링크</a>
-								
-							</div>
-							</div>
-									
+					<a
+						class="text-sm text-blue-300 underline"
+						href="https://navermaps.github.io/maps.js.ncp/docs/"
+					>공식문서링크</a>
 		</div>
-		
-		
+	</div>
+
+</div>
+
+
 
 </html>

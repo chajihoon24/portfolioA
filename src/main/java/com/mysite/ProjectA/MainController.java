@@ -6,13 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.ProjectA.DTO.CustomData;
 import com.mysite.ProjectA.DTO.FinalDTO;
+import com.mysite.ProjectA.DTO.TestDTO;
 import com.mysite.ProjectA.service.Mainservice;
+import com.mysite.ProjectA.service.TestCRUDService;
 import com.mysite.ProjectA.test.JsonDTO;
 import com.mysite.ProjectA.test.TestService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class MainController {
@@ -21,6 +27,8 @@ public class MainController {
 	Mainservice mainservice;
 	@Autowired
 	TestService testService;
+	@Autowired
+	TestCRUDService testCRUDService;
 	
 	@GetMapping("/")
 	public String root() {
@@ -76,5 +84,17 @@ public class MainController {
 		model.addAttribute("data2",data2);
 		return "generalPage/test";
 	}
+	@GetMapping("/lab/basicCRUD")
+	public String basicCRUD() {
+		return "generalPage/basicCRUD";
+	}
+	@PostMapping("/lab/addUser")
+	public String postMethodName(@ModelAttribute TestDTO testDTO) {
+	
+		testCRUDService.add(testDTO);
+		
+		return "redirect:/lab/basicCRUD";
+	}
+	
 	//test
 }
