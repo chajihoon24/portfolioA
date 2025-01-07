@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mysite.ProjectA.DAO.TestDAO;
 import com.mysite.ProjectA.DTO.CustomData;
 import com.mysite.ProjectA.DTO.FinalDTO;
 import com.mysite.ProjectA.DTO.TestDTO;
@@ -83,7 +84,9 @@ public class MainController {
 		return "generalPage/test";
 	}
 	@GetMapping("/lab/basicCRUD")
-	public String basicCRUD() {
+	public String basicCRUD(Model model) {
+		List<TestDAO> data=testCRUDService.getAll();
+		model.addAttribute("dataList",data);
 		return "generalPage/basicCRUD";
 	}
 	@PostMapping("/lab/addUser")

@@ -25,6 +25,8 @@ public class TestDAO {
 			this.ageB = testDTO.getAgeB();
 			
 		};
+		public TestDAO(){			
+		};
 
 	 
 	    @Id

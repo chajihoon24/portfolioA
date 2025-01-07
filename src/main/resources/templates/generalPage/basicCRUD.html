@@ -25,11 +25,11 @@
 							<label for="nameB" class="font-bold">이름 :</label>
 							<input required name="nameB" type="text" class="focus:bg-blue-100 rounded-sm border-2 border-gray-800 hover:border-2 hover:border-black-900">
 						</div>
-						<div class="my-1"style="width:500px;">
+						<div class="my-2"style="width:500px;">
 							<label for="ageB" class="font-bold">나이 :</label>
 							<input required name="ageB" type="number" class="focus:bg-blue-100 rounded-sm border-2 border-gray-800 hover:border-2 hover:border-black-900">
 						</div>
-						<button type="submit" class="w-[200px] font-bold rounded-sm border-2 border-gray-800  my-2 px-3 py-1 bg-gray-100 focus:bg-gray-300 ">등록</button>
+						<button type="submit" class="w-[200px] bg-green-500 text-white rounded"><i class="fa-regular fa-square-plus mr-3"></i><span class="font-bold">등록</span></button>
 					</div>
 				</form>
 				
@@ -37,11 +37,18 @@
 				<div>
 					<div class="font-bold text-xl">명단 리스트</div>
 					<hr class="py-1">
-					<ul>
-						<li th:each="data : ${dataList}">
-							<div class="" th:text="${data.nameb}"></div>
-							<div class="" th:text="${data.ageb}"></div>
+					<ul class="w-[530px]">
+						<li class="mt-2" th:each="data : ${dataList}">
+							<div class="flex p-2 border-2">
+									<div class="font-semibold bg-gray-200 p-2" th:text="'번호 :'+${data.id}"></div>
+								<div class="flex flex-col">
+									<div class="font-semibold p-2" th:text="'이름 :'+${data.nameB}"></div>
+									<div class="font-semibold p-2" th:text="'나이 :' +${data.ageB}"></div>
+								</div>
+									<button class="w-[200px] h-[120px] p-2 ml-5 bg-red-500 text-white rounded ml-auto"><i class="fa-regular fa-circle-xmark"></i> 선택 삭제</button>
+							</div>
 						</li>
+							<button class="w-[200px] bg-red-500 text-white rounded my-3" th:if="${dataList != null and dataList.size() > 0}"><i class="fa-regular fa-circle-xmark"></i> 전체 삭제</button>
 					</ul>
 					
 				</div>
