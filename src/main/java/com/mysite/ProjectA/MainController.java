@@ -78,9 +78,7 @@ public class MainController {
 	
 	@GetMapping("/lab/test")
 	public String test(Model model) {
-		JsonDTO data =testService.jsonService();
 		List<FinalDTO> data2 = testService.jsonService2();
-		model.addAttribute("data",data);
 		model.addAttribute("data2",data2);
 		return "generalPage/test";
 	}

@@ -42,7 +42,6 @@ public class TestService {
 	public List<FinalDTO> jsonService2() {
 	String apiUrl = "https://jsonplaceholder.typicode.com/users";
 	List<UserDTO> userList =  new ArrayList<>();
-	FinalDTO finalDTO = new FinalDTO();
 	List<FinalDTO> newUserList = new ArrayList<>();
 	
 	try {
@@ -63,15 +62,13 @@ public class TestService {
 		
 	}
 	for(UserDTO data : userList) {
+		FinalDTO finalDTO = new FinalDTO();
 		finalDTO.setName(data.getName());
 		finalDTO.setUsername(data.getUsername());
 		finalDTO.setEmail(data.getEmail());
-		
+		finalDTO.setMessage("호출 및 가공 성공");
 		newUserList.add(finalDTO);
 	}
 	return newUserList;
-	
-	
-	
 	}
 }
