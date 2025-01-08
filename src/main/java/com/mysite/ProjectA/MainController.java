@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.ProjectA.DAO.TestDAO;
 import com.mysite.ProjectA.DTO.CustomData;
+
 import com.mysite.ProjectA.DTO.FinalDTO;
 import com.mysite.ProjectA.DTO.TestDTO;
 import com.mysite.ProjectA.service.Mainservice;
@@ -82,10 +83,12 @@ public class MainController {
 		return "generalPage/jsonPractice";
 	}
 	
+
 	@GetMapping("/lab/test")
 	public String test(Model model) {
 		List<FinalDTO> data2 = testService.jsonService2();
 		model.addAttribute("data2",data2);
+
 		return "generalPage/test";
 	}
 	@GetMapping("/lab/basicCRUD")

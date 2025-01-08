@@ -1,5 +1,6 @@
 package com.mysite.ProjectA.test;
 
+
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysite.ProjectA.DTO.FinalDTO;
 import com.mysite.ProjectA.DTO.UserDTO;
+
 
 @Service
 public class TestService {
@@ -37,6 +39,7 @@ public class TestService {
 		
 		return data;		
 	}
+
 	
 	
 	public List<FinalDTO> jsonService2() {
@@ -67,10 +70,10 @@ public class TestService {
 		finalDTO.setUsername(data.getUsername());
 		finalDTO.setEmail(data.getEmail());
 		finalDTO.setMessage("호출 및 가공 성공");
+
 		newUserList.add(finalDTO);
 	}
 	return newUserList;
 	}
-	
-	
+
 }
