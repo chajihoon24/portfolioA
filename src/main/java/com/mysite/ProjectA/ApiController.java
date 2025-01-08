@@ -47,12 +47,12 @@ public class ApiController {
 	@DeleteMapping("/basicCRUD/indi_del/{id}")
 	public ResponseEntity<String> indi_del(@PathVariable(name="id") long id) {
 	    testCRUDService.deleteById(id);
-	    return ResponseEntity.status(HttpStatus.CREATED).body("User added successfully");
+	    return ResponseEntity.status(HttpStatus.CREATED).body("User deleted successfully");
 	}
 	@DeleteMapping("/basicCRUD/all_del")
 	public ResponseEntity<String> all_del() {
 	    testCRUDService.deleteAll();
-	    return ResponseEntity.status(HttpStatus.CREATED).body("User added successfully");
+	    return ResponseEntity.status(HttpStatus.CREATED).body("User deletedAll successfully");
 	}
 	
 }
