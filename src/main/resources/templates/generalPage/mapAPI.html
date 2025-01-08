@@ -1,0 +1,127 @@
+<!doctype html>
+<html
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout}"
+>
+
+<div layout:fragment="content">
+	<div
+		class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6"
+	>
+		<div>실험실입니다.</div>
+		<div>여러가지를 실험하는 곳입니다.</div>
+		<hr
+			class="mb-6"
+			style="width: 100%;"
+		>
+	</div>
+	<div class="flex flex-row max-w-screen-3xl px-10 md:flex-row mx-auto">
+		<div th:replace="fragments/aside::aside"></div>
+		<div class="border text-gray-800 py-6 ml-10 pl-4 flex-1 p-2">
+			contents
+
+			<div class="text-2xl p-2 mb-1 font-bold">
+				<span class="text-yellow-500 text-2xl">카카오맵</span> API 가져오기
+			</div>
+			<hr class="py-1">
+
+			<div
+				id="map"
+				style="width: 50%; height: 400px;"
+			></div>
+			<a
+				class="text-sm text-blue-300 underline"
+				href="https://apis.map.kakao.com/web/guide/"
+			>공식문서링크</a>
+			<script
+				src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=e59e535c0b160dfa98ee590d622b461c"
+			></script>
+			<script
+				type="text/javascript"
+				src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=gwuyj0t8pb"
+			></script>
+			<script th:inline="javascript">
+									/*<![CDATA[*/
+								  document.addEventListener('DOMContentLoaded', function () {
+									
+								    var container = document.getElementById('map');
+								    var options = {
+								      center: new kakao.maps.LatLng(37.251687, 127.357549),
+								      level: 3
+								    };
+								    var map = new kakao.maps.Map(container, options);
+									var zoomControl = new kakao.maps.ZoomControl();
+									map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+									
+									var imageSrc = /*[[@{/image/marker.PNG}]]*/;
+									console.log(imageSrc);
+									
+									var imageSrc = imageSrc, // 마커이미지의 주소입니다    
+									    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+									    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+										
+								  var markerPosition  = new kakao.maps.LatLng(37.251687, 127.357549); 
+								  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+								  // 마커를 생성합니다
+								  var marker = new kakao.maps.Marker({
+								      position: markerPosition,
+									  image: markerImage // 마커이미지 설정 
+								  });
+
+								  // 마커가 지도 위에 표시되도록 설정합니다
+								  marker.setMap(map);
+								  
+								  });
+								  /*]]>*/
+								  
+								</script>
+			<div class="text-xl font-bold mt-3">학습 목표</div>
+			<div>API를 직접 호출하여 사용함으로써 API의 개념과 작동 과정을 이해한다.</div>
+			<div class="text-xl font-bold mt-3">구현 내용</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;">api문서를 참고해 카카오맵 정상 호출</li>
+				<li style="list-style-type: disc;">제공하는 메서드를 활용해 커스텀이미지로 마커 생성,
+					사이즈바 추가</li>
+			</ul>
+			<div class="text-xl font-bold mt-3">오류 회고</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;"><span
+					class="text-red-800 font-bold"
+				>오류:</span>카카오맵 어플리케이션 등록시 127.0.0.1과 localhost은 다르게 인식된다.</li>
+				<ul>
+
+
+					<!--네이버지도-->
+					<div class="text-2xl p-2 mb-1 font-bold mt-5">
+						<span class="text-green-500 text-2xl">네이버맵</span> API 가져오기
+					</div>
+					<hr class="py-1">
+					<div
+						id="navermap"
+						style="width: 50%; height: 400px;"
+					></div>
+					<script>
+								var mapOptions = {
+								    center: new naver.maps.LatLng(37.251687, 127.357549),
+								    zoom: 17
+								};
+								var mapDiv = document.getElementById('navermap');
+								var map = new naver.maps.Map(mapDiv, mapOptions);
+								
+								var marker = new naver.maps.Marker({
+								    position: new naver.maps.LatLng(37.251687, 127.357549),
+								    map: map
+								});
+								</script>
+					<a
+						class="text-sm text-blue-300 underline"
+						href="https://navermaps.github.io/maps.js.ncp/docs/"
+					>공식문서링크</a>
+		</div>
+	</div>
+
+</div>
+
+
+
+</html>

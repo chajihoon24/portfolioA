@@ -62,6 +62,10 @@ public class MainController {
 	public String lab() {
 		return"generalPage/lab";
 	}
+	@GetMapping("/lab/mapAPI")
+	public String mapAPI() {
+		return"generalPage/mapAPI";
+	}
 	@GetMapping("lab/jsWork")
 	public String jsWork() {
 		return "generalPage/jsWork";
