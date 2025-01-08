@@ -35,24 +35,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-<<<<<<< HEAD
+
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 tasks.withType(JavaCompile) {
     options.compilerArgs << "-parameters"
-=======
-	
-	
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.0'
-    
-    implementation 'org.slf4j:slf4j-api:2.0.0-alpha1'  // SLF4J API
-    implementation 'ch.qos.logback:logback-classic:1.4.0'  // Logback 구현체
-    implementation 'ch.qos.logback:logback-core:1.4.0'  // Logback 코어
->>>>>>> 25230702d2e1d5450b105543384f184f2fd07071
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
