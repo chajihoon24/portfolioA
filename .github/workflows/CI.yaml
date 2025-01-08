@@ -9,6 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04 # 3 실행 환경 지정
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=5s --health-timeout=5s --health-retries=3
+
+
     #4 실행스텝지정
     steps:
       - uses: actions/checkout@v3
