@@ -48,7 +48,7 @@ jobs:
 
       - name: Copy JAR file to EC2
         run: |
-          scp -i ${{ secrets.EC2_SSH_KEY }} build/libs/my-app.jar ec2-user@${{ secrets.EC2_PUBLIC_IP }}:/home/ec2-user/ProjectA-0.0.1-SNAPSHOT.jar
+          scp -i ${{ secrets.EC2_SSH_KEY }} build/libs/ProjectA-0.0.1-SNAPSHOT.jar ec2-user@${{ secrets.EC2_PUBLIC_IP }}:/home/ec2-user/ProjectA-0.0.1-SNAPSHOT.jar
 
       - name: SSH to EC2 and run JAR file
         run: |
