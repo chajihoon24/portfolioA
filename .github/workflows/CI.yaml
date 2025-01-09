@@ -31,7 +31,9 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
-
+        
+      - name: list check
+        run: ls -R build/libs
   deploy:
     name: Deploy to EC2
     runs-on: ubuntu-latest
