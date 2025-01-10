@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ depoly ]
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew clean build
 
-      - name: list check
+      - name: List build artifacts
         run: ls -R build/libs
 
       - name: Set up SSH
@@ -44,6 +44,10 @@ jobs:
         run: |
           scp -o StrictHostKeyChecking=no build/libs/ProjectA-0.0.1-SNAPSHOT.jar ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ubuntu/ProjectA-0.0.1-SNAPSHOT.jar
 
-      - name: SSH to EC2 and run JAR file
+      - name: Stop running application on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} "java -jar -Dspring.profiles.active=prod /home/ubuntu/ProjectA-0.0.1-SNAPSHOT.jar"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} "pkill -f 'ProjectA-0.0.1-SNAPSHOT.jar' || true"
+
+      - name: Run JAR file on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} "java -jar -Dspring.profiles.active=prod /home/ubuntu/ProjectA-0.0.1-SNAPSHOT.jar &"
