@@ -55,7 +55,7 @@ public class MainController {
 	}
 	@GetMapping("/photos")
 	public String Contact() {
-		return"generalPage/photos";
+		return"generalPage/photosList";
 	}
 	
 	//========================================================================

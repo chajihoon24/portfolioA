@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+
+<div layout:fragment="content">
+	<div class="flex flex-col max-w-screen-xl mx-auto">
+		<H1 class="bg-gray-200 text-gray-800 py-6">Photos페이지입니다.</H1>
+		<hr class="mb-6 my-1" style="width:100%;">
+
+
+		<!--카드 영역=============================================-->
+		<form action="/photos/add" method="POST" enctype="multipart/form-data"
+			class="upload-form max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+			<!-- 미리보기 이미지 -->
+			<div id="preview-container" class="flex justify-center mb-4">
+				<img id="preview-image" src="#" alt="Preview"
+					class="preview-image max-w-full rounded-lg shadow-md h-[300px]" style="display: none;">
+			</div>
+
+			<div id="preview-container-tmp" class="flex justify-center mb-4">
+				<div style="display: block;" class="h-[300px] my-auto border-gray-400 text-2xl font-bold">이미지 미리보기</div>
+			</div>
+
+			<!-- 제목 입력 -->
+			<div class="form-group mb-4">
+				<label for="photo-title" class="block text-gray-700 font-medium mb-2">사진 제목</label>
+				<input type="text" id="photo-title" name="title" placeholder="사진 제목을 입력하세요" required
+					class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
+			</div>
+
+			<!-- 파일 입력 -->
+			<div class="form-group mb-4">
+				<label for="photo-file" class="block text-gray-700 font-medium mb-2">사진 파일</label>
+				<input type="file" id="photo-file" name="file" accept="image/*" required
+					class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500">
+			</div>
+
+			<!-- 등록 버튼 -->
+			<button type="submit"
+				class="w-full py-3 bg-gray-100 font-semibold border-2 hover:border-red-200 rounded-md hover:bg-gray-200 transition duration-300">등록하기</button>
+		</form>
+
+
+		<!--카드 영역=============================================-->
+
+		<script>
+			document.getElementById('photo-file').addEventListener('change', (event) => {
+				const file = event.target.files[0];
+				const previewImage = document.getElementById('preview-image');
+				const previewImageTmp = document.getElementById('preview-container-tmp');
+
+				if (file) {
+					const reader = new FileReader();
+
+					reader.onload = (e) => {
+						previewImage.src = e.target.result;
+						previewImage.style.display = 'block';
+						previewImageTmp.style.display = 'none'; // 이미지 보이기
+					};
+
+					reader.readAsDataURL(file); // 파일 읽기
+				} else {
+					previewImage.src = '#';
+					previewImage.style.display = 'none'; // 이미지 숨기기
+				}
+			});
+		</script>
+
+
+
+
+	</div>
+</div>
+
+</html>
