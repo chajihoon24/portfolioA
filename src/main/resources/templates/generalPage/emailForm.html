@@ -1,13 +1,8 @@
 <!doctype html>
-<html
-	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout}"
->
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 
 <div layout:fragment="content">
-	<div
-		class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6"
-	>
+	<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6">
 		<div>실험실입니다.</div>
 		<div>여러가지를 실험하는 곳입니다.</div>
 		<hr class="mb-6" style="width: 100%;">
@@ -19,22 +14,77 @@
 
 			<div class="text-2xl p-2 mb-1 font-bold">Email 보내기 기초</div>
 			<hr class="py-1">
-			
+
 			<div>
-				<form action="lab/emailForm" method="post">
+				<form method="post">
 					<label for="email">받을 이메일:</label>
-					<input type="email" id="email" class="border-2 border-gray-300 p-2">
-					<button type="submit" class="bg-blue-500 text-white p-2">보내기</button>
-				</form>	
+					<input name="email" type="email" id="email" class="border-2 border-gray-300 p-2" placeholder="이메일">
+					<button id="send_btn" type="submit" class="bg-green-500 text-white p-2 rounded"><i
+							class="fa-regular fa-paper-plane px-1"></i>보내기</button>
+				</form>
 			</div>
-
-
-
+			<div id="loading" class="m-2 p-2 bg-gray-300 font-bord hidden">전송 중입니다. 잠시만 기다려 주세요...</div>
+			
+			
+			<div class="text-xl font-bold mt-3">학습 목표</div>
+			<div>messageAPI을 이용하여 메세지 발송기능을 구현한다.</div>
+			<div class="text-xl font-bold mt-3">구현 내용</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;">설정된 구글이메일을 통해 입력된 이메일에 메일을 발송합니다. </li>
+				<li style="list-style-type: disc;">이메일 유효성을 검사해 결과에 맞는 페이지를 반환합니다.</li>
+			</ul>
+			<div class="text-xl font-bold mt-3">오류 회고</div>
+			<ul class="pl-2">
+				<li style="list-style-type: disc;"><span
+					class="text-red-800 font-bold"
+				>회고:</span>requestBody는 form정보를 json으로 보내야 맵핑이된다. 그럴려면 form태그만으로는 불가능하고 ajax를 통해 요청헤더에 application/json을 설정해 요청하는 방법을 써야한다. </li>
+				<li style="list-style-type: disc;"><span
+					class="text-red-800 font-bold"
+				>회고:</span>다른방법으로는 requestParam을 이용하는 방법이 있다. </li>
+				<ul>
+					
+					
 		</div>
 
 	</div>
-</div>
+	<script>
+		document.getElementById("send_btn").addEventListener("click", function (event) {
+			event.preventDefault();
 
+			if (document.getElementById("email").value != "") {
+				const email_data = document.getElementById("email").value;
+				const data = { email: email_data };
+
+				document.getElementById("loading").classList.remove("hidden");
+
+				fetch("/lab/emailForm", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(data),
+				})
+					.then((response) => response.json())
+					.then((result) => {
+						if (result.url !== null) {
+							// 서버에서 받은 리다이렉트 URL로 이동
+							window.location.href = result.url;
+						} else {
+							alert("이메일 발송 실패");
+						}
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+						alert("오류가 발생했습니다.");
+					});
+
+			} else {
+				alert("이메일을 입력해주세요")
+			}
+
+		});
+	</script>
+</div>
 
 
 </html>

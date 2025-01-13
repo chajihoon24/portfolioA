@@ -51,11 +51,11 @@ public class MainController {
 	}
 	@GetMapping("/about")
 	public String About() {
-		return"generalPage/about";
+		return"generalPage/test";
 	}
-	@GetMapping("/contact")
+	@GetMapping("/photos")
 	public String Contact() {
-		return"generalPage/contact";
+		return"generalPage/photos";
 	}
 	
 	//========================================================================
@@ -104,9 +104,17 @@ public class MainController {
 	    testCRUDService.add(testDTO);
 	    return ResponseEntity.status(HttpStatus.CREATED).body("User added successfully");
 	}
+	
 	@GetMapping("/lab/email")
-	public String emailForm() {
+	public String emailForm(Model model) {
+		System.out.println("emailPage접근");
 		return "generalPage/emailForm";
+	}
+	@GetMapping("/lab/emailResult")
+	public String emailResult(@RequestParam(value = "email", required = false) String email,Model model) {
+		model.addAttribute("email", email);
+		System.out.println("결과 페이지");
+		return"generalPage/emailResult";
 	}
 	//test
 }
