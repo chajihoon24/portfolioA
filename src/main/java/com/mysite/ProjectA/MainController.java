@@ -104,6 +104,9 @@ public class MainController {
 	    testCRUDService.add(testDTO);
 	    return ResponseEntity.status(HttpStatus.CREATED).body("User added successfully");
 	}
-
+	@GetMapping("/lab/email")
+	public String emailForm() {
+		return "generalPage/emailForm";
+	}
 	//test
 }
