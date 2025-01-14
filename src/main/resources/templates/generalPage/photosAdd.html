@@ -9,6 +9,7 @@
 
 
 		<!--카드 영역=============================================-->
+		<div th:if="${error}" class="m-auto px-3 py-2 bg-red-400 text-white font-bold rounded mb-6">실패: 올바른 파일 형식이 아닙니다.</div> 
 		<form action="/photos/add" method="POST" enctype="multipart/form-data"
 			class="upload-form max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
 			<!-- 미리보기 이미지 -->
