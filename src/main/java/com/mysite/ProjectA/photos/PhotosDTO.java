@@ -1,5 +1,6 @@
 package com.mysite.ProjectA.photos;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +19,6 @@ public class PhotosDTO {
 	
 	private String imageUrl;
 	
-	private Date uploaddate;
+	private LocalDateTime uploadDate;
 
 }
