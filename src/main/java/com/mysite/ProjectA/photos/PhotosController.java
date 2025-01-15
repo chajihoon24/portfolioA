@@ -2,19 +2,26 @@ package com.mysite.ProjectA.photos;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -85,7 +92,13 @@ public class PhotosController {
             photosDAO.setFileName(fileName);
             photosDAO.setTitle(title);
             photosDAO.setImageUrl(destinationFile.getAbsolutePath());
-            photosDAO.setUploadDate(LocalDateTime.now());
+            
+            LocalDateTime today=LocalDateTime.now();
+            DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String today1 =today.format(formatter);
+            
+            
+            photosDAO.setUploadDate(today1);
             photosRepository.save(photosDAO);
             
 		
@@ -99,10 +112,16 @@ public class PhotosController {
 			return "redirect:/photos/addForm";
 		}
 	}
-	@DeleteMapping("/delete/{id}")
-	public String deletePhoto(@RequestParam int id) {	
-		return "redirect:/photos/list";
-	}
 
+    @DeleteMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseEntity<String> deletePhoto(@PathVariable("id") Long id) {
+        try {
+            photosService.deletePhoto(id);
+            return ResponseEntity.ok("삭제 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
+        }
+    }
 
 }

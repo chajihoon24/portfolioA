@@ -17,6 +17,11 @@ public class PhotosService {
 		return PhotosList;
 		
 	}
+	public void deletePhoto(Long id) {
+		
+		photosRepository.deleteById(id);
+		
+	}
 	
 	
 }

@@ -1,45 +1,133 @@
-<!doctype html>
-<html 
-	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout}">
-	
-	
-	<div layout:fragment="content">
-		<div class="flex flex-col max-w-screen-xl mx-auto">
-			<H1 class="bg-gray-200 text-gray-800 py-6" >포트폴리오페이지입니다.</H1>
-			<hr class="mb-6 my-1" style="width:100%;">
-			
-			<div class="flex flex-col bg-blue-200">
-				<div class="flex flex-row mb-4 flex-between">
-					<div class="py-5 px-3 bg-red-100 border-2 border-red-300">프로필 사진1</div>
-					<div class="py-5 px-3 border-2 border-red-300 flex-1">설명란1</div>
-				</div>
-				
-				<div class="flex flex-row mb-4">
-					<div class="py-5 px-3 bg-red-100 border-2 border-red-300">프로필 사진1</div>
-					<div class="py-5 px-3 border-2 border-red-300 flex-1">설명란1</div>
-				</div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
 
-				
-				<div class="flex flex-row mb-4">
-					<div class="py-5 px-3 bg-red-100 border-2 border-red-300">프로필 사진1</div>
-					<div class="py-5 px-3 border-2 border-red-300 flex-1">설명란1</div>
-				</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포트폴리오 페이지</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 
-				
-				<div class="flex flex-row mb-4">
-					<div class="py-5 px-3 bg-red-100 border-2 border-red-300">프로필 사진1</div>
-					<div class="py-5 px-3 border-2 border-red-300 flex-1">설명란1</div>
-				</div>
+<body>
+    <div layout:fragment="content" class="min-h-screen">
+        <div id="content_container" class="flex flex-col max-w-screen-xl mx-auto">
+            <div class="text-3xl font-bold px-4 py-4 flex flex-col text-gray-700">Portfolio</div>
+            <hr class="my-1" style="width:100%;">
 
-			</div>
-			
-			
-			
-			
-		</div>
-		
-		
-	</div>
+            <div class="flex flex-col">
+                <!-- 반복되는 카드 시작 -->
+                <div class="flex bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden mb-5">
+                    <img class="shadow-md rounded-md mx-5 my-3 w-[350px] h-[270px] transition transition-transform transform hover:scale-105" src="/image/pj3.png">
+                    <div class="my-3 mx-4">
+                        <p class="text-gray-700 font-bold text-2xl">WishLink</p>
+                        <div class="flex">
+                            <div class="text-gray-400 font-bold text-sm">3차 국비 프로젝트</div>
+							<a target="_blank"
+							    href="https://docs.google.com/presentation/d/1Z-tofkc46tDR62WlhexoHz5go5PX85Ii70Wh0qjb1Mo/edit?usp=sharing">
+							    <div class="text-gray-700 font-bold text-sm my-1 underline ml-7"><i
+							            class="fa-solid fa-link px-2"></i>사이트 링크</div>
+							</a>
+                            <a target="_blank"
+                                href="https://docs.google.com/presentation/d/1Z-tofkc46tDR62WlhexoHz5go5PX85Ii70Wh0qjb1Mo/edit?usp=sharing">
+                                <div class="text-gray-700 font-bold text-sm my-1 underline ml-7"><i
+                                        class="fa-solid fa-link px-2"></i>프로젝트PPT</div>
+                            </a>
+                        </div>
+                        <hr class="my-1" style="width:100%;">
+
+                        <div class="text-gray-700 font-bold text-sm my-1">인원: 4명 (팀장)</div>
+                        <div class="text-gray-700 font-bold text-sm my-1">기술스텍: Springboot, mysql, JPA, tailwind </div>
+            
+                            <div class="text-gray-700 font-bold text-sm my-1">담당: 인증/인가, UI, 위시리스트 추가 기능, 관리자페이지</div>
+                            <div class="font-bold text-sm my-3">프로젝트 설명: </div>
+                            <div class="text-gray-700 font-bold text-sm my-1">사용자가 원하는 상품을 위시리스트에 추가하여 관리할 수 있으며, 다른 사용자와 위시리스트를 공유할 수 있는 쇼핑몰 플랫폼입니다.</div>
+                    </div>
+                </div>
+                <!-- 반복되는 카드 끝 -->
+				
+				<!-- 반복되는 카드 시작 -->
+				<div class="flex bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden mb-5">
+				    <img class="shadow-md rounded-md mx-5 my-3 w-[350px] h-[270px] transition transition-transform transform hover:scale-105" src="/image/pj1.PNG">
+				    <div class="my-3 mx-4">
+				        <p class="text-gray-700 font-bold text-2xl">반려동물용품 사이트</p>
+				        <div class="flex">
+				            <div class="text-gray-400 font-bold text-sm">2-2차 국비 프로젝트</div>
+							<a target="_blank"
+							    href="https://villagabae.netlify.app">
+							    <div class="text-gray-700 font-bold text-sm my-1 underline ml-7"><i
+							            class="fa-solid fa-link px-2"></i>사이트 링크</div>
+							</a>
+				        </div>
+				        <hr class="my-1" style="width:100%;">
+
+				        <div class="text-gray-700 font-bold text-sm my-1">인원: 1명</div>
+				        <div class="text-gray-700 font-bold text-sm my-1">기술스텍: React</div>
+
+				            <div class="text-gray-700 font-bold text-sm my-1">담당: 전부</div>
+				            <div class="font-bold text-sm my-3">프로젝트 설명: </div>
+				            <div class="text-gray-700 font-bold text-sm my-1">리액트로 만든 반려동물용품 쇼핑몰 사이트입니다.</div>
+				    </div>
+				</div>
+				<!-- 반복되는 카드 끝 -->
+
+
+				<!-- 반복되는 카드 시작 -->
+				<div class="flex bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden mb-5">
+				    <img class="shadow-md rounded-md mx-5 my-3 w-[350px] h-[270px] transition transition-transform transform hover:scale-105" src="/image/pj2_2.PNG">
+				    <div class="my-3 mx-4">
+				        <p class="text-gray-700 font-bold text-2xl">계산기</p>
+				        <div class="flex">
+				            <div class="text-gray-400 font-bold text-sm">2-1차 국비 프로젝트</div>
+							<a target="_blank"
+							    href="https://spectacularcalculator.netlify.app">
+							    <div class="text-gray-700 font-bold text-sm my-1 underline ml-7"><i
+							            class="fa-solid fa-link px-2"></i>사이트 링크</div>
+							</a>
+				        </div>
+				        <hr class="my-1" style="width:100%;">
+
+				        <div class="text-gray-700 font-bold text-sm my-1">인원: 4명</div>
+				        <div class="text-gray-700 font-bold text-sm my-1">기술스텍: html, css, js, localstorage</div>
+
+				            <div class="text-gray-700 font-bold text-sm my-1">담당: localstorage에 히스토리 저장 , UI</div>
+				            <div class="font-bold text-sm my-3">프로젝트 설명: </div>
+				            <div class="text-gray-700 font-bold text-sm my-1">
+							스택을 활용해 후위식을 계산하며, 계산 과정을 로컬스토리지(LocalStorage)에 기록하는 계산기입니다.</div>
+				    </div>
+				</div>
+				<!-- 반복되는 카드 끝 -->
+				
+				<!-- 반복되는 카드 시작 -->
+				<div class="flex bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden mb-5">
+				    <img class="shadow-md rounded-md mx-5 my-3 w-[350px] h-[270px] transition transition-transform transform hover:scale-105" src="/image/pj1.PNG">
+				    <div class="my-3 mx-4">
+				        <p class="text-gray-700 font-bold text-2xl">VillaGavae</p>
+				        <div class="flex">
+				            <div class="text-gray-400 font-bold text-sm">1차 국비 프로젝트</div>
+							<a target="_blank"
+							    href="https://villagabae.netlify.app">
+							    <div class="text-gray-700 font-bold text-sm my-1 underline ml-7"><i
+							            class="fa-solid fa-link px-2"></i>사이트 링크</div>
+							</a>
+				        </div>
+				        <hr class="my-1" style="width:100%;">
+
+				        <div class="text-gray-700 font-bold text-sm my-1">인원: 6명</div>
+				        <div class="text-gray-700 font-bold text-sm my-1">기술스텍: html, css</div>
+
+				            <div class="text-gray-700 font-bold text-sm my-1">담당: 고객센터 페이지 구현</div>
+				            <div class="font-bold text-sm my-3">프로젝트 설명: </div>
+				            <div class="text-gray-700 font-bold text-sm my-1">HTML과 CSS만을 사용하여 실제 숙박 사이트를 참고해 제작한 웹페이지입니다.</div>
+				    </div>
+				</div>
+				<!-- 반복되는 카드 끝 -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
 
 </html>

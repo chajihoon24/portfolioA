@@ -30,6 +30,6 @@ public class PhotosDAO {
 	private String fileName;
 	
 	@NotNull
-	private LocalDateTime uploadDate;
+	private String uploadDate;
 
 }
