@@ -5,7 +5,12 @@
 			class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
 			<div class="p-3 flex flex-row items-center justify-between">
 				<a th:href="@{/main}"
-					class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline font-bold">Jihoon</a>
+				   class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline font-bold"
+				   style="display: flex; align-items: center;">
+				  <img src="/image/heart.png" 
+				       style="width: 1em; height: 1em; margin-right: 0.5em; object-fit: contain;">
+				  <span>Jihoon</span>
+				</a>
 				<button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
 					<svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
 						<path x-show="!open" fill-rule="evenodd"
