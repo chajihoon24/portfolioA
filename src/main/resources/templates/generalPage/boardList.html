@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+
+<div layout:fragment="content">
+    <div class="flex flex-col max-w-screen-xl mx-auto">
+        <div class="text-3xl font-bold px-4 py-4 flex flex-col text-gray-700">Board</div>
+        <hr class="my-1" style="width:100%;">
+
+
+        <div class="flex w-full items-center">
+            <div class="text-xl font-bold px-4 py-2 text-gray-700" th:text="'게시글 수 : ' + ${size}"></div>
+            <button
+                class="ml-auto px-4 py-2 bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"><a
+                    href="/board/addForm"><i class="fa-regular fa-square-plus"></i>
+                    글쓰기</a>
+            </button>
+        </div>
+
+
+        <div class="container mx-auto mt-8">
+            <div>
+                <table class="table-auto w-full border-collapse border border-gray-200 shadow-md">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2 border border-gray-300 text-left">번호</th>
+                            <th class="px-4 py-2 border border-gray-300 text-left">작성자</th>
+                            <th class="px-4 py-2 border border-gray-300 text-left">타이틀</th>
+                            <th class="px-4 py-2 border border-gray-300 text-left">작성일자</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${#lists.isEmpty(boardPage.content)}" style="min-height: 300px;"
+                            class="bg-gray-100 w-full">
+                            <td colspan="4" class="text-center text-gray-500 py-4">게시물이 없습니다.</td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50" th:each="data, iterStat : ${boardPage.content}">
+                            <td class="px-4 py-2 border border-gray-300"
+                                th:text="${boardPage.number * 7 + 1+iterStat.index}"></td>
+                            <td class="px-4 py-2 border border-gray-300" th:text="${data.name}"></td>
+                            <td class="px-4 py-2 border border-gray-300">
+                                <a th:text="${data.title}" th:href="@{/board/detail/{id}(id=${data.id})}"></a>
+                            </td>
+                            <td class="px-4 py-2 border border-gray-300" th:text="${data.time}"></td>
+                        </tr>
+
+                        <!-- 반복되는 데이터는 JavaScript 또는 백엔드에서 추가 -->
+                    </tbody>
+                </table>
+                <div class="mt-6 flex justify-center space-x-2">
+                    <span th:each="i : ${#numbers.sequence(0, boardPage.totalPages - 1)}">
+                        <a th:href="@{/board/list(page=${i}, size=${boardPage.size})}"
+                            class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md shadow-md hover:bg-gray-100"
+                            th:text="${i + 1}"></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</html>
