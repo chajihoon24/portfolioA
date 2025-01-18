@@ -116,5 +116,11 @@ public class MainController {
 		System.out.println("결과 페이지");
 		return"generalPage/emailResult";
 	}
+	@GetMapping("/redis")
+	public String getMethodName() {
+		return "generalPage/redis";
+	}
+	
+	
 	//test
 }

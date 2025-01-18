@@ -1,0 +1,135 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+<div layout:fragment="content">
+	<div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-start md:justify-start md:flex-col md:px-6">
+		<div>실험실입니다.</div>
+		<div>여러가지를 실험하는 곳입니다.</div>
+		<hr class="mb-6" style="width: 100%;">
+	</div>
+
+	<div class="flex flex-row max-w-screen-2xl px-10 md:flex-row mx-auto">
+		<div th:replace="fragments/aside::aside" class="w-1/4 pr-4"></div>
+		<div class="border text-gray-800 py-6 ml-10 pl-4 flex-1 p-2 flex">
+			<div class="w-1/2 bg-gray-100 rounded-lg shadow-md p-3">
+				<h2 class="text-2xl p-2 mb-4 font-bold text-center">Redis 기초</h2>
+
+				<div class="mb-4">
+					<label for="key" class="block text-sm font-semibold text-gray-700">Key</label>
+					<input type="text" id="key" name="key"
+						class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+						placeholder="Enter key">
+				</div>
+
+				<div class="mb-6">
+					<label for="value" class="block text-sm font-semibold text-gray-700">Value</label>
+					<input type="text" id="value" name="value"
+						class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+						placeholder="Enter value">
+				</div>
+
+				<button id="submit_btn"
+					class="w-full py-3 bg-gray-600 text-white font-semibold rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+					등록
+				</button>
+
+				<div class="mt-8">
+					<h3 class="text-xl font-semibold mb-2">Redis 메모리</h3>
+					<div id="Redis_List" class="text-gray-600 bg-black">저장된 정보가 없습니다.</div>
+				</div>
+				<script>
+					document.addEventListener("DOMContentLoaded", function () {
+						fetch("/redis/list", { method: "GET" })
+							.then(res => res.json()) // JSON 데이터를 반환
+							.then(dataList => {
+								let tmpHTML = "";
+								dataList.reverse().forEach(data => {
+									tmpHTML += `
+									<div class="p-3 mb-4 text-white flex justify-between items-center">
+									    <div>
+									        <strong>key:</strong> ${data.key} <br>
+									        <strong>value:</strong> ${data.value}<br>
+									    </div>
+									    <span class="p-1 cursor-pointer text-red-500" onclick="deleteEl(this)" data-id=${data.key}>X 삭제</span>
+									</div>
+                    `;
+								});
+								document.getElementById("Redis_List").innerHTML = tmpHTML;
+
+							});
+
+						//======================================
+
+						document.getElementById("submit_btn").addEventListener("click", function (event) {
+							let key = document.getElementById("key").value;
+							let value = document.getElementById("value").value;
+
+							const data = {
+								key: key,
+								value: value
+							};
+
+							fetch("/redis/save", {
+								method: "POST",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify(data)
+							})
+								.then(res => res.text()) // 응답을 텍스트로 처리
+								.then(message => {
+									alert(message);
+									fetch("/redis/list", { method: "GET" })
+										.then(res => res.json()) // JSON 데이터를 반환
+										.then(dataList => {
+											let tmpHTML = "";
+											dataList.reverse().forEach(data => {
+												tmpHTML += `
+												<div class="p-3 mb-4 text-white flex justify-between items-center">
+												    <div>
+												        <strong>key:</strong> ${data.key} <br>
+												        <strong>value:</strong> ${data.value}<br>
+												    </div>
+												    <span class="p-1 cursor-pointer text-red-500" onclick="deleteEl(this)" data-id=${data.key}>X 삭제</span>
+												</div>
+									`;
+											});
+											document.getElementById("Redis_List").innerHTML = tmpHTML;
+
+										});
+								});
+						});
+					});
+
+					function deleteEl(element) {
+						const photoId = element.getAttribute('data-id'); // 클릭된 요소에서 data-id 가져오기
+
+						if (confirm("정말로 삭제하시겠습니까?")) {
+							fetch(`/redis/delete/${photoId}`, {
+								method: 'DELETE', // DELETE 메서드를 사용하여 서버에 삭제 요청
+								headers: {
+									'Content-Type': 'application/json',
+								},
+							})
+								.then(response => {
+									alert(response);
+									location.reload();
+								})
+						}
+					}
+				</script>
+			</div>
+
+			<div class="p-5 w-1/2">
+				<div class="text-xl font-bold mt-3">학습 목표</div>
+				<div>Spring boot로 redis을 다룹니다.</div>
+				<div class="text-xl font-bold mt-3">구현 내용</div>
+				<ul class="pl-2">
+					<li style="list-style-type: disc;">Redis실습 환경을 구축합니다.</li>
+					<li style="list-style-type: disc;">데이터를 메모리에 저장하고 가져오거나 삭제하는 기능을 구현합니다.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</html>
