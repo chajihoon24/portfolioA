@@ -33,6 +33,9 @@ public class PhotosController {
 	@Value("${file.upload-dir}")
 	String upload_dir;
 	
+	@Value("${spring.redis.host}")
+	String host;
+	
 	@Autowired
 	PhotosService photosService;
 	
@@ -47,7 +50,7 @@ public class PhotosController {
 		
 		for (PhotosDAO photo : photosLIst) {
 			// 실제 파일 경로를 웹에서 접근할 수 있는 URL로 변환
-			String imageUrl = "http://localhost:8080/uploads/" + photo.getFileName();
+			String imageUrl = "http://"+host+":8080/uploads/" + photo.getFileName();
 			photo.setImageUrl(imageUrl);  // 이미지 URL을 데이터 객체에 설정
 			
 			photosList2.add(photo);

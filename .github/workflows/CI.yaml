@@ -46,7 +46,12 @@ jobs:
 
       - name: Stop running application on EC2
         run: |
-          ssh -v -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} "pkill -f 'ProjectA-0.0.1-SNAPSHOT.jar' || true"
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} "
+          if pgrep -f 'ProjectA-0.0.1-SNAPSHOT.jar'; then
+            pkill -f 'ProjectA-0.0.1-SNAPSHOT.jar';
+          else
+            echo 'No process to stop';
+          fi"
 
       - name: Run JAR file on EC2
         run: |
