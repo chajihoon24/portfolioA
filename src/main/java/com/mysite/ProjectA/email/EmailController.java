@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.mail.internet.InternetAddress;
-import jakarta.validation.Valid;
+
 
 @RestController
 public class EmailController {
@@ -21,7 +21,7 @@ public class EmailController {
 	EmailService emailService;
 	
 	@PostMapping("/lab/emailForm")
-	public EmailResponseDTO emailForm(@Valid @RequestBody EmailDTO emaildto, BindingResult result, Model model) {
+	public EmailResponseDTO emailForm(@RequestBody EmailDTO emaildto, BindingResult result, Model model) {
 		System.out.println("controller 진입");
 		
 		if (isValidEmail(emaildto.getEmail())){
